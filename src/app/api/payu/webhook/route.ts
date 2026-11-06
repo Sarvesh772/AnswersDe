@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth/server";
 import { sql } from "@/lib/db";
-import { PLAN_DOUBTS, verifyResponseHash } from "@/lib/payu";
+import { getAppUrl, PLAN_DOUBTS, verifyResponseHash } from "@/lib/payu";
 
 function redirect(location: string) {
   return new Response(null, { status: 302, headers: { Location: location } });
@@ -14,7 +14,7 @@ function redirect(location: string) {
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const params = url.searchParams;
-  const base = `${url.origin}/`;
+  const base = `${getAppUrl()}/`;
 
   const salt = process.env.PAYU_SALT || "";
   const status = params.get("status") ?? "";

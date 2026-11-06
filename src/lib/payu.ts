@@ -11,6 +11,15 @@ export function getPayuUrl(): string {
   return process.env.PAYU_MODE?.toLowerCase() === "test" ? TEST_URL : PROD_URL;
 }
 
+/**
+ * Canonical app URL used for PayU's surl/furl and the post-payment redirect.
+ * Override with NEXT_PUBLIC_APP_URL (per environment) if needed.
+ */
+export function getAppUrl(): string {
+  const url = process.env.NEXT_PUBLIC_APP_URL || "https://answers-de.vercel.app";
+  return url.trim().replace(/\/+$/, "");
+}
+
 function sha512(input: string): string {
   return crypto.createHash("sha512").update(input, "utf8").digest("hex");
 }

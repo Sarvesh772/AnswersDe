@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth/server";
 import {
   generatePaymentHash,
   generateTxnId,
+  getAppUrl,
   getPayuUrl,
   PLAN_AMOUNT,
   PLAN_PRODUCT_INFO,
@@ -45,9 +46,9 @@ export async function POST(req: Request) {
   const email = (user.email || "").trim();
 
   const txnid = generateTxnId();
-  const origin = new URL(req.url).origin;
-  const surl = `${origin}/api/payu/webhook`;
-  const furl = `${origin}/api/payu/webhook`;
+  const appUrl = getAppUrl();
+  const surl = `${appUrl}/api/payu/webhook`;
+  const furl = `${appUrl}/api/payu/webhook`;
 
   const hash = generatePaymentHash(
     {

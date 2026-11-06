@@ -88,6 +88,10 @@ Auth (Managed Better Auth)**, and the **DeepSeek API**.
 - The app shows a toast on `?payment=success` and refreshes the doubt count.
 
 > The `PAYU_SALT` is used **server-side only** and is never sent to the browser.
+>
+> `surl`/`furl` and the post-payment redirect use `getAppUrl()` — defaulting to
+> `https://answers-de.vercel.app` (override per environment with
+> `NEXT_PUBLIC_APP_URL`).
 
 ## Project structure
 
